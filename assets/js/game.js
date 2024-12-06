@@ -39,18 +39,18 @@ function updateObstacles() {
 }
 
 function checkCollision() {
-    for (let obstacle of obstacles) {
-      if (
-        carX < obstacle.x + obstacle.width &&
-        carX + carWidth > obstacle.x &&
-        carY < obstacle.y + obstacle.height &&
-        carY + carHeight > obstacle.y
-      ) {
-        alert(`Game Over! Your score: ${score}`);
-        resetGame(); // restart the game
-        break;
-      }
+  for (let obstacle of obstacles) {
+    if (
+      carX < obstacle.x + obstacle.width &&
+      carX + carWidth > obstacle.x &&
+      carY < obstacle.y + obstacle.height &&
+      carY + carHeight > obstacle.y
+    ) {
+      alert(`Game Over! Your score: ${score}`);
+      resetGame(); // restart the game
+      break;
     }
+  }
 }
 
 function updateScore() {
@@ -75,11 +75,11 @@ function handleTiltControls() {
 }
 
 function resetGame() {
-    // reset all game variables
-    carX = canvas.width / 2 - carWidth / 2;
-    obstacles = [];
-    score = 0;
-    gameSpeed = 2;
+  // reset all game variables
+  carX = canvas.width / 2 - carWidth / 2;
+  obstacles = [];
+  score = 0;
+  gameSpeed = 2;
 }
 
 function gameLoop() {
