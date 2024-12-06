@@ -12,10 +12,10 @@ let carY = canvas.height - carHeight - 10;
 let obstacles = [];
 let gameSpeed = 2;
 let score = 0;
+let tiltX = 0;
 
-document.addEventListener("keydown", (e) => {
-  if (e.key === "ArrowLeft" && carX > 10) carX -= 20;
-  if (e.key === "ArrowRight" && carX < canvas.width - carWidth - 10) carX += 20;
+window.addEventListener("deviceorientation", (event) => {
+  tiltX = event.gamma || 0; // tilt left/right (gamma) is used
 });
 
 function drawCar() {
@@ -59,6 +59,20 @@ function updateScore() {
   ctx.fillText(`Score: ${score}`, 10, 30);
 }
 
+function handleTiltControls() {
+  // map tilt values to the canvas width
+  const maxTilt = 20; // max tilt angle for smooth control
+  if (tiltX > maxTilt) tiltX = maxTilt;
+  if (tiltX < -maxTilt) tiltX = -maxTilt;
+
+  const moveX = (tiltX / maxTilt) * 10; // control sensitivity
+  carX += moveX;
+
+  // prevent car from going out of bounds
+  if (carX < 0) carX = 0;
+  if (carX > canvas.width - carWidth) carX = canvas.width - carWidth;
+}
+
 function gameLoop() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   drawCar();
@@ -66,6 +80,7 @@ function gameLoop() {
   obstacles.forEach(drawObstacle);
   checkCollision();
   updateScore();
+  handleTiltControls();
   requestAnimationFrame(gameLoop);
 }
 
