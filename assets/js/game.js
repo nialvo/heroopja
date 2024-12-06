@@ -47,7 +47,7 @@ function checkCollision() {
       carY + carHeight > obstacle.y
     ) {
       alert(`Game Over! Your score: ${score}`);
-      resetGame(); // restart the game
+      window.location.reload(); // hard reset
       break;
     }
   }
@@ -72,14 +72,6 @@ function handleTiltControls() {
   // prevent car from going out of bounds
   if (carX < 0) carX = 0;
   if (carX > canvas.width - carWidth) carX = canvas.width - carWidth;
-}
-
-function resetGame() {
-  // reset all game variables
-  carX = canvas.width / 2 - carWidth / 2;
-  obstacles = [];
-  score = 0;
-  gameSpeed = 2;
 }
 
 function gameLoop() {
