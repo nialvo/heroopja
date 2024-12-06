@@ -46,9 +46,9 @@ function checkCollision() {
         carY < obstacle.y + obstacle.height &&
         carY + carHeight > obstacle.y
       ) {
-        alert(`Game Over! Your score: ${score}`);
-        // force a full reload
         window.location.href = window.location.href;
+        alert(`Game Over! Your score: ${score}`);
+        
         break;
       }
     }
