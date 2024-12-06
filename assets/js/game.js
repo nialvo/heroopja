@@ -38,6 +38,13 @@ function updateObstacles() {
   }
 }
 
+function updateObstaclesReload() {
+    obstacles.forEach((obstacle) => (obstacle.y -= 20 * gameSpeed));
+    obstacles = obstacles.filter((obstacle) => obstacle.y < canvas.height);
+    
+}
+  
+
 function checkCollision() {
     for (let obstacle of obstacles) {
       if (
@@ -46,7 +53,7 @@ function checkCollision() {
         carY < obstacle.y + obstacle.height &&
         carY + carHeight > obstacle.y
       ) {
-        window.location.href = window.location.href;
+        updateObstaclesReload()
         alert(`Game Over! Your score: ${score}`);
         
         break;
