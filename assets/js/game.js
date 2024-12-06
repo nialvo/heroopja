@@ -4,8 +4,8 @@ const ctx = canvas.getContext("2d");
 canvas.width = 400;
 canvas.height = 600;
 
-const carWidth = 50;
-const carHeight = 80;
+const carWidth = 20;
+const carHeight = 40;
 let carX = canvas.width / 2 - carWidth / 2;
 let carY = canvas.height - carHeight - 10;
 
