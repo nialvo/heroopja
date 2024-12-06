@@ -39,7 +39,7 @@ function updateObstacles() {
 }
 
 function updateObstaclesReload() {
-    obstacles.forEach((obstacle) => (obstacle.y -= 20 * gameSpeed));
+    obstacles.forEach((obstacle) => (obstacle.y -= 300 * gameSpeed));
     obstacles = obstacles.filter((obstacle) => obstacle.y < canvas.height);
     
 }
