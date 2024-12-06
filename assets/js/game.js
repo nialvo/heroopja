@@ -39,19 +39,20 @@ function updateObstacles() {
 }
 
 function checkCollision() {
-  for (let obstacle of obstacles) {
-    if (
-      carX < obstacle.x + obstacle.width &&
-      carX + carWidth > obstacle.x &&
-      carY < obstacle.y + obstacle.height &&
-      carY + carHeight > obstacle.y
-    ) {
-      alert(`Game Over! Your score: ${score}`);
-      window.location.reload(); // hard reset
-      break;
+    for (let obstacle of obstacles) {
+      if (
+        carX < obstacle.x + obstacle.width &&
+        carX + carWidth > obstacle.x &&
+        carY < obstacle.y + obstacle.height &&
+        carY + carHeight > obstacle.y
+      ) {
+        alert(`Game Over! Your score: ${score}`);
+        // force a full reload
+        window.location.href = window.location.href;
+        break;
+      }
     }
   }
-}
 
 function updateScore() {
   score++;
